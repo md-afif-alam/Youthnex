@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Members | Youthnex Initiative</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Poppins', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }, colors: { brand: { 50: '#f0fdf4', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', dark: '#0f172a' } } } } }
+    </script>
+    <style>
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: #16a34a; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-700 antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all h-20 flex items-center">
+        <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="images/logo.png" alt="Youthnex Logo" class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain rounded-lg shadow-lg" onerror="this.src='https://via.placeholder.com/150/16a34a/ffffff?text=Y'" />
+                <span class="font-heading font-bold text-lg sm:text-xl text-slate-900">Youthnex Initiative</span>
+            </a>
+            <div class="hidden md:flex space-x-6 items-center" id="nav-desktop">
+                <a href="index.html" class="font-medium text-slate-600">Home</a>
+                <a href="about.html" class="font-medium text-slate-600 hover:text-brand-600 transition">About</a>
+                <a href="team.html" class="font-medium text-slate-600 hover:text-brand-600 transition">Our Team</a>
+                <a href="gallery.html" class="font-medium text-slate-600 hover:text-brand-600 transition">Gallery</a>
+                <a href="donate.html" class="font-medium text-slate-600 hover:text-brand-600 transition">Donate</a>
+                <a href="volunteer.html" class="bg-brand-600 text-white px-5 py-2 rounded-full font-medium hover:bg-brand-700 transition shadow-md">Volunteer</a>
+            </div>
+            <!-- Mobile hamburger -->
+            <div class="md:hidden flex items-center">
+                <button id="nav-toggle" aria-label="Toggle menu" class="p-2 rounded-md hover:bg-slate-100 focus:outline-none">
+                    <svg id="icon-open" class="h-6 w-6 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg id="icon-close" class="h-6 w-6 text-slate-900 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden absolute right-4 top-20 bg-white w-64 rounded-xl shadow-lg border border-slate-100 z-50 md:hidden">
+                <div class="flex flex-col p-4 space-y-2">
+                    <a href="index.html" class="px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-slate-50">Home</a>
+                    <a href="team.html" class="px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-slate-50">Our Team</a>
+                    <a href="volunteer.html" class="mt-2 bg-brand-600 text-white px-4 py-2 rounded-full font-medium text-center hover:bg-brand-700">Volunteer</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="pt-32 pb-12 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 text-center reveal active">
+            <span class="inline-block py-1.5 px-4 rounded-full bg-blue-100 text-blue-700 font-bold text-sm mb-4 border border-blue-200">
+                <i class="fas fa-users mr-1"></i> Our Backbone
+            </span>
+            <h1 class="text-4xl md:text-6xl font-heading font-bold text-slate-900 mb-6">Registered <span class="text-brand-600">Volunteers</span></h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
+                These are the passionate changemakers who execute our systems on the ground. From mentoring to data collection, they are the driving force of Youthnex.
+            </p>
+            <a href="volunteer.html" class="inline-flex items-center gap-2 bg-brand-600 text-white px-8 py-3 rounded-full font-bold hover:bg-brand-700 transition shadow-lg shadow-brand-500/30 text-lg">
+                <i class="fas fa-hand-paper"></i> Be A Volunteer
+            </a>
+        </div>
+    </section>
+
+    <!-- Volunteers Grid Section -->
+    <section class="py-16 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4">
+            
+            <!-- Grid Container for 20 Volunteers -->
+            <div id="volunteer-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Volunteers will be injected here via JavaScript -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-10 text-center border-t border-slate-800">
+        <p>&copy; 2026 Youthnex Initiative Bangladesh. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Logic
+        const navToggle = document.getElementById('nav-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+
+        navToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+        });
+
+        // Generate 20 Volunteer Cards Dynamically
+        const volunteerGrid = document.getElementById('volunteer-grid');
+        
+        // This loop generates exactly 20 cards containing your required placeholders
+        let cardsHTML = '';
+        for (let i = 1; i <= 20; i++) {
+            cardsHTML += `
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm card-hover reveal">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-100 shrink-0">
+                            <img src="images/profile.png" alt="Profile Image" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/150?text=Profile'">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 leading-tight">[Name]</h3>
+                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded mt-1 inline-block uppercase tracking-wider">Volunteer</span>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm text-slate-600">
+                        <p class="flex items-center gap-2"><i class="fas fa-university text-slate-400 w-4"></i> <span class="font-medium">[Institute]</span></p>
+                        <p class="flex items-center gap-2"><i class="fas fa-graduation-cap text-slate-400 w-4"></i> <span>Grade: [Grade]</span></p>
+                        <p class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-slate-400 w-4"></i> <span>[Location]</span></p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        volunteerGrid.innerHTML = cardsHTML;
+
+        // Scroll Reveal for Dynamically Added Cards
+        setTimeout(() => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }, 100);
+    </script>
+</body>
+</html>

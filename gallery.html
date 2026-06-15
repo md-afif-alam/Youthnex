@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Impact Gallery | Youthnex Initiative</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    fontFamily: { sans: ['Poppins', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }, 
+                    colors: { brand: { 50: '#f0fdf4', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', dark: '#0f172a' } } 
+                } 
+            } 
+        }
+    </script>
+    <style>
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Masonry Grid Utilities */
+        .gallery-item { break-inside: avoid; margin-bottom: 1.5rem; }
+        
+        /* Filter Button Transition */
+        .filter-btn { transition: all 0.3s ease; }
+        .filter-btn.active { background-color: #16a34a; color: white; border-color: #16a34a; box-shadow: 0 4px 14px 0 rgba(22, 163, 74, 0.39); }
+        
+        /* Image Overlay Hover */
+        .image-overlay { opacity: 0; transition: all 0.4s ease; background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.2) 50%, transparent 100%); }
+        .gallery-card:hover .image-overlay { opacity: 1; }
+        .gallery-card:hover img { transform: scale(1.05); }
+        .overlay-content { transform: translateY(20px); transition: all 0.4s ease; }
+        .gallery-card:hover .overlay-content { transform: translateY(0); }
+        
+        /* Lightbox transitions */
+        #lightbox { transition: opacity 0.3s ease; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-700 antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all h-20 flex items-center">
+        <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="images/logo.png" alt="Youthnex Logo" class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain rounded-lg shadow-lg" onerror="this.src='https://via.placeholder.com/150/16a34a/ffffff?text=Y'" />
+                <span class="font-heading font-bold text-lg sm:text-xl text-slate-900">Youthnex Initiative</span>
+            </a>
+            <div class="hidden md:flex space-x-6 items-center" id="nav-desktop">
+                <a href="index.html" class="font-medium text-slate-600 hover:text-brand-600 transition">Home</a>
+                <a href="about.html" class="font-medium text-slate-600 hover:text-brand-600 transition">About</a>
+                <a href="team.html" class="font-medium text-slate-600 hover:text-brand-600 transition">Our Team</a>
+                <a href="gallery.html" class="font-medium text-brand-600 hover:text-brand-600 transition">Gallery</a>
+                <a href="donate.html" class="font-medium text-slate-600 hover:text-brand-600 transition">Donate</a>
+                <a href="volunteer.html" class="bg-brand-600 text-white px-5 py-2 rounded-full font-medium hover:bg-brand-700 transition shadow-md">Volunteer</a>
+            </div>
+            <!-- Mobile hamburger -->
+            <div class="md:hidden flex items-center">
+                <button id="nav-toggle" aria-label="Toggle menu" class="p-2 rounded-md hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-900 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden absolute right-4 top-20 bg-white w-64 rounded-xl shadow-lg border border-slate-100 z-50 md:hidden">
+                <div class="flex flex-col p-4 space-y-2">
+                    <a href="index.html" class="px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-slate-50">Home</a>
+                    <a href="about.html" class="px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-slate-50">About</a>
+                    <a href="team.html" class="px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-slate-50">Our Team</a>
+                    <a href="gallery.html" class="px-3 py-2 rounded-md font-medium text-brand-600 hover:bg-slate-50">Gallery</a>
+                    <a href="donate.html" class="px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-slate-50">Donate</a>
+                    <a href="volunteer.html" class="mt-2 bg-brand-600 text-white px-4 py-2 rounded-full font-medium text-center hover:bg-brand-700">Volunteer</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Visual Hero Section -->
+    <section class="pt-32 pb-16 bg-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80" alt="Gallery Background" class="w-full h-full object-cover filter grayscale">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/50 to-slate-900 z-0"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10 text-center reveal active">
+            <span class="inline-block py-1.5 px-4 rounded-full bg-brand-500/20 text-brand-400 font-bold text-sm mb-4 border border-brand-500/30">
+                <i class="fas fa-camera-retro mr-1"></i> Data In Action
+            </span>
+            <h1 class="text-4xl md:text-6xl font-heading font-bold mb-4">Our Visual <span class="text-brand-500">Impact</span></h1>
+            <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+                Explore the moments where structured systems meet real-world youth empowerment. Every picture tells a story of capability building.
+            </p>
+        </div>
+    </section>
+
+    <!-- Gallery Section with Filters -->
+    <section class="py-16 bg-slate-50 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4">
+            
+            <!-- Filters -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
+                <button class="filter-btn active px-6 py-2 rounded-full border border-slate-300 font-medium text-slate-600 bg-white hover:border-brand-500 hover:text-brand-600" data-filter="all">All Photos</button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-slate-300 font-medium text-slate-600 bg-white hover:border-brand-500 hover:text-brand-600" data-filter="workshops">Workshops</button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-slate-300 font-medium text-slate-600 bg-white hover:border-brand-500 hover:text-brand-600" data-filter="mentoring">Mentoring</button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-slate-300 font-medium text-slate-600 bg-white hover:border-brand-500 hover:text-brand-600" data-filter="donations">Distributions</button>
+            </div>
+
+            <!-- Masonry Grid -->
+            <!-- Columns: 1 on mobile, 2 on tablet, 3 on desktop -->
+            <div class="columns-1 sm:columns-2 lg:columns-3 gap-6" id="gallery-grid">
+                
+                <!-- Item 1 (Workshops) -->
+                <div class="gallery-item gallery-card relative rounded-2xl overflow-hidden cursor-pointer group shadow-sm bg-white" data-category="workshops" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80" alt="Skill Assessment Session" class="w-full h-auto object-cover transition-transform duration-500">
+                    <div class="image-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="overlay-content">
+                            <span class="bg-brand-500 text-white text-xs font-bold uppercase tracking-wider px-2 py-1 rounded mb-2 inline-block">Workshops</span>
+                            <h3 class="text-white font-heading font-bold text-xl leading-tight">Diagnostic Assessment</h3>
+                            <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex justify-center items-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i class="fas fa-expand-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 (Mentoring) -->
+                <div class="gallery-item gallery-card relative rounded-2xl overflow-hidden cursor-pointer group shadow-sm bg-white" data-category="mentoring" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" alt="Career Mentoring" class="w-full h-auto object-cover transition-transform duration-500">
+                    <div class="image-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="overlay-content">
+                            <span class="bg-blue-500 text-white text-xs font-bold uppercase tracking-wider px-2 py-1 rounded mb-2 inline-block">Mentoring</span>
+                            <h3 class="text-white font-heading font-bold text-xl leading-tight">Career Path Guidance</h3>
+                            <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex justify-center items-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i class="fas fa-expand-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 (Distributions) -->
+                <div class="gallery-item gallery-card relative rounded-2xl overflow-hidden cursor-pointer group shadow-sm bg-white" data-category="donations" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80" alt="Book Distribution" class="w-full h-auto object-cover transition-transform duration-500">
+                    <div class="image-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="overlay-content">
+                            <span class="bg-purple-500 text-white text-xs font-bold uppercase tracking-wider px-2 py-1 rounded mb-2 inline-block">Distributions</span>
+                            <h3 class="text-white font-heading font-bold text-xl leading-tight">Education Material Drive</h3>
+                            <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex justify-center items-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i class="fas fa-expand-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 (Workshops) -->
+                <div class="gallery-item gallery-card relative rounded-2xl overflow-hidden cursor-pointer group shadow-sm bg-white" data-category="workshops" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=600&q=80" alt="Digital Skill Workshop" class="w-full h-auto object-cover transition-transform duration-500">
+                    <div class="image-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="overlay-content">
+                            <span class="bg-brand-500 text-white text-xs font-bold uppercase tracking-wider px-2 py-1 rounded mb-2 inline-block">Workshops</span>
+                            <h3 class="text-white font-heading font-bold text-xl leading-tight">Digital Tool Mastery</h3>
+                            <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex justify-center items-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i class="fas fa-expand-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 (Mentoring) -->
+                <div class="gallery-item gallery-card relative rounded-2xl overflow-hidden cursor-pointer group shadow-sm bg-white" data-category="mentoring" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=600&q=80" alt="Student Discussions" class="w-full h-auto object-cover transition-transform duration-500">
+                    <div class="image-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="overlay-content">
+                            <span class="bg-blue-500 text-white text-xs font-bold uppercase tracking-wider px-2 py-1 rounded mb-2 inline-block">Mentoring</span>
+                            <h3 class="text-white font-heading font-bold text-xl leading-tight">Logical Reasoning Practice</h3>
+                            <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex justify-center items-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i class="fas fa-expand-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6 (Distributions) -->
+                <div class="gallery-item gallery-card relative rounded-2xl overflow-hidden cursor-pointer group shadow-sm bg-white" data-category="donations" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" alt="School Programs" class="w-full h-auto object-cover transition-transform duration-500">
+                    <div class="image-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="overlay-content">
+                            <span class="bg-purple-500 text-white text-xs font-bold uppercase tracking-wider px-2 py-1 rounded mb-2 inline-block">Distributions</span>
+                            <h3 class="text-white font-heading font-bold text-xl leading-tight">Partner School Outreach</h3>
+                            <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex justify-center items-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i class="fas fa-expand-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Empty State (Hidden by default, shows if filter has no results) -->
+            <div id="empty-state" class="hidden text-center py-20">
+                <div class="w-20 h-20 bg-slate-200 text-slate-400 rounded-full flex items-center justify-center text-4xl mx-auto mb-4"><i class="fas fa-images"></i></div>
+                <h3 class="text-2xl font-heading font-bold text-slate-800 mb-2">No Images Found</h3>
+                <p class="text-slate-500">We don't have any images in this category yet.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-brand-600 text-white text-center">
+        <div class="max-w-4xl mx-auto px-4 reveal">
+            <h2 class="text-3xl md:text-5xl font-heading font-bold mb-6">Inspired by what you see?</h2>
+            <p class="text-lg text-brand-100 mb-10 max-w-2xl mx-auto">
+                Behind every picture is a team of dedicated youths and generous donors. You can be part of the next big picture.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="volunteer.html" class="bg-white text-brand-700 px-8 py-4 rounded-xl font-bold hover:bg-slate-100 transition shadow-lg text-lg flex items-center justify-center gap-2">
+                    <i class="fas fa-user-plus"></i> Join as Volunteer
+                </a>
+                <a href="donate.html" class="bg-brand-700 border border-brand-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-800 transition shadow-sm text-lg flex items-center justify-center gap-2">
+                    <i class="fas fa-heart text-red-400"></i> Donate Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-10 text-center border-t border-slate-800">
+        <p>&copy; 2026 Youthnex Initiative Bangladesh. All rights reserved.</p>
+    </footer>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" class="fixed inset-0 bg-slate-900/95 z-[100] hidden flex-col justify-center items-center opacity-0 transition-opacity backdrop-blur-sm">
+        <!-- Close Button -->
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 w-12 h-12 bg-white/10 hover:bg-red-500 text-white rounded-full flex justify-center items-center text-2xl transition">
+            <i class="fas fa-times"></i>
+        </button>
+        <!-- Title bar -->
+        <div class="absolute bottom-6 left-0 right-0 text-center px-4">
+            <h3 id="lightbox-title" class="text-white font-heading font-bold text-2xl mb-1">Title</h3>
+            <span id="lightbox-category" class="text-brand-400 font-medium text-sm tracking-widest uppercase">Category</span>
+        </div>
+        <!-- Image -->
+        <img id="lightbox-img" src="" alt="Gallery Image Full" class="max-h-[85vh] max-w-[90vw] object-contain rounded-lg shadow-2xl scale-95 transition-transform duration-300">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Navbar Mobile Menu Toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+
+        navToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+        });
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+
+        // Filtering Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const emptyState = document.getElementById('empty-state');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active', 'bg-brand-600', 'text-white'));
+                filterBtns.forEach(b => b.classList.add('bg-white', 'text-slate-600'));
+                
+                // Add active class to clicked button
+                btn.classList.remove('bg-white', 'text-slate-600');
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+                let visibleCount = 0;
+
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                        // Add a tiny animation when reappearing
+                        item.animate([{opacity: 0, transform: 'scale(0.95)'}, {opacity: 1, transform: 'scale(1)'}], {duration: 400, fill: 'forwards'});
+                        visibleCount++;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Show empty state if nothing matches
+                if(visibleCount === 0) {
+                    emptyState.classList.remove('hidden');
+                } else {
+                    emptyState.classList.add('hidden');
+                }
+            });
+        });
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxTitle = document.getElementById('lightbox-title');
+        const lightboxCategory = document.getElementById('lightbox-category');
+
+        function openLightbox(element) {
+            // Get image src and data from clicked card
+            const imgSrc = element.querySelector('img').src;
+            const title = element.querySelector('h3').innerText;
+            const category = element.querySelector('span').innerText;
+
+            // Set Lightbox data
+            lightboxImg.src = imgSrc;
+            lightboxTitle.innerText = title;
+            lightboxCategory.innerText = category;
+
+            // Show Lightbox
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            
+            // Trigger animation
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+                lightboxImg.classList.remove('scale-95');
+                lightboxImg.classList.add('scale-100');
+            }, 10);
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0');
+            lightboxImg.classList.remove('scale-100');
+            lightboxImg.classList.add('scale-95');
+            
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightbox.classList.remove('flex');
+                // Restore body scroll
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // Close lightbox on Escape key or clicking outside image
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+                closeLightbox();
+            }
+        });
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

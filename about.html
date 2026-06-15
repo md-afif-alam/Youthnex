@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Youthnex Initiative</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    fontFamily: { sans: ['Poppins', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }, 
+                    colors: { brand: { 50: '#f0fdf4', 100: '#dcfce7', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 900: '#14532d', dark: '#0f172a' } } 
+                } 
+            } 
+        }
+    </script>
+    <style>
+        .text-gradient { background: linear-gradient(135deg, #16a34a, #0f172a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .bg-pattern { background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 32px 32px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-700 antialiased overflow-x-hidden">
+
+    <!-- Navbar (Exactly as provided) -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all h-20 flex items-center">
+        <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <!-- Logo image: replace 'assets/logo.png' with your actual logo path -->
+                <img src="images/logo.png" alt="Youthnex Logo" class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain rounded-lg shadow-lg" onerror="this.src='https://via.placeholder.com/150/16a34a/ffffff?text=Y'" />
+                <span class="font-heading font-bold text-lg sm:text-xl text-slate-900">Youthnex Initiative</span>
+            </a>
+            <div class="hidden md:flex space-x-6 items-center" id="nav-desktop">
+                <a href="index.html" class="font-medium text-slate-600">Home</a>
+                <a href="about.html" class="font-medium text-brand-600 hover:text-brand-600 transition">About</a>
+                <a href="team.html" class="font-medium text-slate-600 hover:text-brand-600 transition">Our Team</a>
+                <a href="gallery.html" class="font-medium text-slate-600 hover:text-brand-600 transition">Gallery</a>
+                <a href="donate.html" class="font-medium text-slate-600 hover:text-brand-600 transition">Donate</a>
+                <a href="volunteer.html" class="bg-brand-600 text-white px-5 py-2 rounded-full font-medium hover:bg-brand-700 transition shadow-md">Volunteer</a>
+            </div>
+            <!-- Mobile hamburger -->
+            <div class="md:hidden flex items-center">
+                <button id="nav-toggle" aria-label="Toggle menu" class="p-2 rounded-md hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-900 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden absolute right-4 top-20 bg-white w-64 rounded-xl shadow-lg border border-slate-100 z-50 md:hidden">
+                <div class="flex flex-col p-4 space-y-2">
+                    <a href="index.html" class="px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-slate-50">Home</a>
+                    <a href="about.html" class="px-3 py-2 rounded-md font-medium text-brand-600 hover:bg-slate-50">About</a>
+                    <a href="team.html" class="px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-slate-50">Our Team</a>
+                    <a href="gallery.html" class="px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-slate-50">Gallery</a>
+                    <a href="donate.html" class="px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-slate-50">Donate</a>
+                    <a href="volunteer.html" class="mt-2 bg-brand-600 text-white px-4 py-2 rounded-full font-medium text-center hover:bg-brand-700">Volunteer</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-pattern relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-50 z-0"></div>
+        <div class="max-w-7xl mx-auto px-4 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="reveal active">
+                <span class="inline-block py-1.5 px-4 rounded-full bg-brand-100 text-brand-700 font-semibold text-sm mb-4 border border-brand-200">
+                    <i class="fas fa-info-circle mr-1"></i> Discover Our Story
+                </span>
+                <h1 class="text-5xl lg:text-6xl font-heading font-bold text-slate-900 leading-tight mb-6">
+                    We Are Redefining <br> <span class="text-gradient">Youth Empowerment.</span>
+                </h1>
+                <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                    Youthnex Initiative is a student-led organization based in Bangladesh. We are focused on building a structured, data-driven approach to youth education and skill development, ensuring every young mind reaches its full potential.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#who-we-are" class="bg-slate-900 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-800 transition shadow-lg shadow-slate-900/20">Read Our Story</a>
+                    <a href="volunteer.html" class="bg-brand-100 text-brand-700 border border-brand-200 px-6 py-3 rounded-full font-medium hover:bg-brand-200 transition">Join the Team</a>
+                </div>
+            </div>
+            <div class="relative reveal active hidden lg:block">
+                <div class="absolute inset-0 bg-brand-500 rounded-3xl transform rotate-3 scale-105 opacity-10"></div>
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Youth working together" class="rounded-3xl shadow-2xl relative z-10 w-full h-[400px] object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Are & Our Goals -->
+    <section id="who-we-are" class="py-20 bg-brand-dark text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 transform translate-x-1/2 -translate-y-1/2"></div>
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-heading font-bold mb-4">Our Vision & Mission</h2>
+                <p class="text-slate-300 max-w-2xl mx-auto text-lg">We dream of a better Bangladesh without any kind of illiteracy, driven by a highly developed and skilled youth workforce.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-slate-800/50 border border-slate-700 p-8 rounded-2xl reveal hover:-translate-y-2 transition duration-300">
+                    <div class="w-14 h-14 bg-brand-500/20 text-brand-400 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Our Mission</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        To transform abstract learning gaps into measurable data. We focus on continuous improvement in foundational skills rather than occasional workshops, ensuring students develop highly usable real-world capabilities within short, focused timeframes.
+                    </p>
+                </div>
+                
+                <div class="bg-slate-800/50 border border-slate-700 p-8 rounded-2xl reveal hover:-translate-y-2 transition duration-300" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Our Ultimate Goal</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        To build a scalable "Youth Skill Intelligence System" for Bangladesh. By aggregating data across schools, we identify systemic gaps and provide targeted interventions. We aim to make every student's skills visible, measurable, and improvable.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Problem vs The Solution -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-heading font-bold text-slate-900 mb-4">Why We Are Different</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg">We believe in "Systems over Events."</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="bg-red-50 p-10 rounded-3xl shadow-sm border border-red-100 hover:shadow-lg transition reveal">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-red-100 text-red-500 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-times"></i></div>
+                        <h3 class="text-3xl font-heading font-bold text-slate-900">The Problem: Events</h3>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed text-lg mb-6">
+                        Traditional NGOs rely on one-time events, awareness campaigns, or donation-based activities. These provide temporary inspiration but <strong>zero follow-up</strong>. In many parts of Bangladesh, students remain highly exam-oriented, lacking exposure to essential real-world competencies like communication and structured problem-solving.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50 p-10 rounded-3xl shadow-sm border border-brand-100 hover:shadow-lg transition reveal">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-check"></i></div>
+                        <h3 class="text-3xl font-heading font-bold text-slate-900">The Solution: Systems</h3>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed text-lg mb-6">
+                        We design repeatable, measurable, and scalable mechanisms. Meaningful change comes from continuous improvement, verified through hard data. Youthnex introduces a skill intelligence framework that evaluates students beyond grades and focuses on actual capability development.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Help & Do Tasks (Zigzag Layout) -->
+    <section class="py-20 bg-slate-50 border-t border-slate-200 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-heading font-bold text-slate-900 mb-4">How We Do Our Tasks</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg">A deep dive into our on-field operations and contributions.</p>
+            </div>
+
+            <div class="space-y-24">
+                <!-- Task 1 -->
+                <div class="grid md:grid-cols-2 gap-12 items-center reveal">
+                    <div class="order-2 md:order-1">
+                        <div class="inline-block py-1 px-3 bg-brand-100 text-brand-700 rounded-full text-sm font-bold mb-4">Step 01</div>
+                        <h3 class="text-3xl font-heading font-bold text-slate-900 mb-4">Skill Assessment & Learning Sessions</h3>
+                        <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                            First, students undergo a diagnostic assessment evaluating English communication, digital tools, and logical reasoning. Then, we guide them through a structured <strong>30-day improvement program</strong>. We take valuable learning sessions to strengthen weak areas through consistent practice and simplified modules.
+                        </p>
+                        <ul class="space-y-3 text-slate-700">
+                            <li><i class="fas fa-check-circle text-brand-500 mr-2"></i> Identifies real capability levels</li>
+                            <li><i class="fas fa-check-circle text-brand-500 mr-2"></i> Focuses on practical, usable skills</li>
+                        </ul>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80" alt="Students in assessment" class="rounded-2xl shadow-xl w-full h-80 object-cover">
+                    </div>
+                </div>
+
+                <!-- Task 2 -->
+                <div class="grid md:grid-cols-2 gap-12 items-center reveal">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" alt="Career Mentoring" class="rounded-2xl shadow-xl w-full h-80 object-cover">
+                    </div>
+                    <div>
+                        <div class="inline-block py-1 px-3 bg-blue-100 text-blue-700 rounded-full text-sm font-bold mb-4">Step 02</div>
+                        <h3 class="text-3xl font-heading font-bold text-slate-900 mb-4">Career Path Guidelines & Mentoring</h3>
+                        <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                            Education doesn't stop at learning; it must translate into a livelihood. We help youth gain practical life work experience. Our volunteer mentors provide deep career path guidelines, preparing them for the modern workforce and helping them secure good jobs.
+                        </p>
+                        <a href="team.html" class="text-brand-600 font-bold hover:text-brand-700 transition">Meet Our Mentors <i class="fas fa-arrow-right ml-1 text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Task 3 -->
+                <div class="grid md:grid-cols-2 gap-12 items-center reveal">
+                    <div class="order-2 md:order-1">
+                        <div class="inline-block py-1 px-3 bg-purple-100 text-purple-700 rounded-full text-sm font-bold mb-4">Step 03</div>
+                        <h3 class="text-3xl font-heading font-bold text-slate-900 mb-4">Serving the Underprivileged</h3>
+                        <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                            Knowledge is power. When an illiterate person learns, they know things, they can distinguish between right and wrong, and they can live a better life. We raise funds to provide educational materials, resources, and free schooling access to underprivileged children.
+                        </p>
+                        <a href="donate.html" class="bg-brand-600 text-white px-6 py-3 rounded-full font-medium hover:bg-brand-700 transition shadow-md shadow-brand-600/30 inline-block">Support This Cause</a>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80" alt="Helping children" class="rounded-2xl shadow-xl w-full h-80 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 text-center border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-2xl font-heading text-white font-bold mb-4">Youthnex Initiative</h2>
+            <p class="max-w-md mx-auto mb-6 text-sm">Building a structured, data-driven approach to youth education and skill development in Bangladesh. Systems over Events.</p>
+            <div class="flex justify-center gap-4 mb-8">
+                <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-600 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-600 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-600 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2026 Youthnex Initiative Bangladesh. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar Mobile Menu Toggle Logic
+        const navToggle = document.getElementById('nav-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+
+        navToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on clicking outside or a link
+        document.addEventListener('click', (event) => {
+            if (!navToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+        });
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => {
+            revealOnScroll.observe(el);
+        });
+    </script>
+</body>
+</html>
